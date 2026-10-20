@@ -1656,3 +1656,105 @@ a.tp-duo__it:hover .tp-duo__ph img,a.tp-duo__it:focus-visible .tp-duo__ph img{tr
 }
 /* О Елене: «как организатор» фото крупнее и до правого края, «как преподаватель» фото крупнее (20.10) */
 @media (min-width:901px){#organizator .two-col--75{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}#prepodavatel .tch-top{grid-template-columns:minmax(0,6fr) minmax(0,6fr)}}
+
+/* ===================== МОБИЛЬНАЯ ВЕРСИЯ, замечания Никиты 20.10.2026 ===================== */
+/* клуб на главной: цена и кнопки на ПК слева внизу, на телефоне после списка */
+.club__end--m{display:none}
+@media (min-width:901px){#klub .club>div:first-child .club__end--d{margin-top:auto}}
+@media (max-width:900px){.club__end--d{display:none}.club__end--m{display:block;margin-top:36px}.club__end--m .club__price{margin-top:0}}
+
+@media (max-width:760px){
+  /* главная, первый экран: направления компактнее, между ними тонкая линия, фото крупнее и по правому краю */
+  .hero--home .dirs{gap:0;margin-top:24px}
+  .hero--home .dirs>i{display:block;height:1px;margin:18px 0}
+  .hero--home .dir h2{font-size:16px}
+  .hero--home .dir p{margin:4px 0 12px;font-size:13.5px;line-height:1.4}
+  .hero--home .dir .btn{min-height:38px;padding:8px 16px;font-size:13px;gap:10px}
+  .hero--home .dir .btn .ic{width:14px;height:14px}
+  .hero--home .ph{width:144vw;margin-left:calc(-44vw - var(--pad));margin-right:0}
+
+  /* больше воздуха между линией и текстом в списках */
+  .trow{padding:30px 0;row-gap:18px}
+  .trow__who{gap:10px}
+  .dirrow{padding:26px 0;row-gap:14px}
+  .day summary{padding:26px 0}
+  .day__b{padding-bottom:30px}
+  .prow{padding:40px 0;gap:22px}
+  .terms{gap:0}.terms p{padding:24px 0 26px}
+
+  /* отзывы: лентой вбок, карточки короче, полный текст по кнопке */
+  .revs{display:grid;columns:auto;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(var(--pad)*-1);padding:0 var(--pad) 8px;scroll-padding-inline:var(--pad);scrollbar-width:none;align-items:start}
+  .revs::-webkit-scrollbar{display:none}
+  .rev{grid-column:auto;margin:0;scroll-snap-align:start;padding:22px 20px}
+  .rev .rev__q{font-size:14.5px;line-height:1.55;max-height:13.5em;overflow:hidden;-webkit-mask:linear-gradient(#000 70%,transparent);mask:linear-gradient(#000 70%,transparent)}
+  .rev.is-open .rev__q{max-height:none;-webkit-mask:none;mask:none}
+  .rev__more{margin-top:12px;padding:0;border:0;background:none;font:inherit;font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;color:var(--ink);cursor:pointer}
+  .rev__by{margin-top:16px;padding-top:14px}
+  .revs-hint{display:block;margin-top:12px;font-size:13px;color:var(--ink-2)}
+
+  /* даты туров: по две карточки, без прокрутки вбок */
+  .tcards{grid-auto-flow:row;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-columns:auto;overflow:visible;margin-inline:0;padding:0;gap:36px 12px}
+  .tcards+.swipe-hint,.swipe-hint{display:none}
+  .tcard__date .num{font-size:clamp(1.6rem,7vw,2.1rem)}
+  .tcard__date .it{font-size:17px}
+  .tcard dl{margin:10px 0 14px;font-size:13px;gap:6px}
+  .tcard dl div{grid-template-columns:1fr;gap:2px;padding-top:6px}
+  .tcard dt{font-size:11.5px}
+  .tcard__acts .btn{min-height:38px;padding:8px 14px;font-size:12.5px;gap:8px;white-space:normal;line-height:1.2}
+  .tcard__acts .btn .ic{width:13px;height:13px}
+  .tcard__acts .lnk{font-size:12.5px}
+  .tcard__tag{font-size:10.5px;padding:4px 9px}
+
+  /* «что внутри тура»: по две плитки */
+  .mosaic{gap:36px 12px}
+  .tile,.tile--7,.tile--5,.tile--6{grid-column:span 6}
+  .tile--wide{grid-column:1/-1}
+  .tile__ph,.tile--5 .tile__ph{aspect-ratio:4/5}
+  .tile--wide .tile__ph{aspect-ratio:3/2}
+  .tile__tag{margin-top:12px;font-size:10px;letter-spacing:.14em}
+  .tile .h3{font-size:17px}
+  .tile__d{margin-top:8px;font-size:13.5px;line-height:1.45}
+  .tile__m{gap:6px;margin-top:10px}
+  .tile__m li{padding:4px 9px;font-size:11.5px}
+  .tile .lnk{font-size:12.5px}
+
+  /* преподаватели в турах: фото под текстом, блоки разделены линией и воздухом */
+  #prepodavateli .two-col{display:flex;flex-direction:column}
+  #prepodavateli .two-col>.stack{order:1}
+  #prepodavateli .two-col>.photos{order:2;margin-top:28px}
+  #prepodavateli .two-col.mt-l{margin-top:64px;padding-top:56px;border-top:1px solid var(--line)}
+
+  /* «продуманная организация»: по две карточки */
+  .sec--dark .nums,.sec--dark .nums--2,.sec--dark .nums--4{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px}
+  .sec--dark .nums li{padding-top:16px;gap:8px}
+  .sec--dark .nums .h3{font-size:16px}
+  .sec--dark .nums p{font-size:13.5px;line-height:1.45}
+
+  /* кадры с маршрутов: галерея в две колонки */
+  .gal{columns:2;column-gap:10px}
+  .gal figure{margin-bottom:12px}
+  .gal figcaption{margin-top:6px;font-size:12px;line-height:1.35}
+
+  /* гостиница: кнопка меньше */
+  .hotel-cap .btn{min-height:40px;padding:8px 18px;font-size:13px}
+
+  /* проведённые туры и мероприятия (все страницы): две колонки вразбежку */
+  .pf-cols{display:block;columns:2;column-gap:12px}
+  .pf-col{display:contents}
+  .pf-cols .pf__it{break-inside:avoid;margin:0 0 28px!important}
+  .pf-cols .pf__it:nth-child(odd) .pf__ph{aspect-ratio:4/5}
+  .pf-cols .pf__it:nth-child(even) .pf__ph{aspect-ratio:1}
+  .pf__t{margin-top:10px;font-size:14.5px}
+  .pf__m{font-size:12px}
+  .pf__it .lnk{font-size:12px}
+
+  /* фильмы о Камчатке: две обложки рядом */
+  .films{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 12px}
+  .film{grid-template-columns:1fr;gap:12px}
+  .film__ph{aspect-ratio:3/4}
+  .film__k{font-size:10.5px;letter-spacing:.14em}
+  .film .h3{font-size:16px}
+  .film p{font-size:13px;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+}
+/* длинные слова в заголовках не распирают узкий экран («конфиденциальности» на 360px) */
+@media (max-width:420px){.h2,.h1,.h3{overflow-wrap:break-word;hyphens:auto}}

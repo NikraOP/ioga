@@ -351,4 +351,25 @@
     b.replaceWith(f);
     f.focus();
   }));
+
+  /* отзывы на телефоне: лента вбок, длинный текст свёрнут, под ним кнопка «Читать полностью» */
+  const revs = $$('.revs');
+  if (revs.length) {
+    const mq = matchMedia('(max-width: 760px)');
+    revs.forEach(box => {
+      const hint = document.createElement('p'); hint.className = 'revs-hint'; hint.textContent = 'Листайте отзывы вбок';
+      hint.hidden = true; box.after(hint);
+      $$('.rev', box).forEach(r => {
+        const q = $('.rev__q', r); if (!q) return;
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'rev__more'; b.textContent = 'Читать полностью'; b.hidden = true;
+        b.addEventListener('click', () => { const open = r.classList.toggle('is-open'); b.textContent = open ? 'Свернуть' : 'Читать полностью'; b.setAttribute('aria-expanded', String(open)); });
+        q.after(b);
+      });
+    });
+    const sync = () => revs.forEach(box => {
+      box.nextElementSibling.hidden = !mq.matches;
+      $$('.rev', box).forEach(r => { const q = $('.rev__q', r), b = $('.rev__more', r); if (!b) return; b.hidden = !mq.matches || (!r.classList.contains('is-open') && q.scrollHeight <= q.clientHeight + 2); });
+    });
+    sync(); mq.addEventListener('change', sync); addEventListener('load', sync);
+  }
 })();
