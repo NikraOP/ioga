@@ -2096,3 +2096,16 @@ details.is-closing summary .ic{transform:none!important}
   #prepodavatel .tch-method{order:3}
   #prepodavatel .tch-top__ph{order:4;margin-top:28px}
 }
+/* главная, планшет 761–1180: первый экран как на телефоне — направления столбиком с линией, фото крупно у правого края */
+@media (min-width:761px) and (max-width:1180px){
+  .hero--home .dirs{grid-template-columns:1fr;gap:0;margin-top:28px;max-width:520px}
+  .hero--home .dirs>i{display:block;height:1px;margin:22px 0}
+  .hero--home .ph{width:175vw;max-width:none;margin-left:calc(-75vw - var(--pad));margin-right:0}
+  .hero--home .ph img{transform:none;max-width:100%;width:100%;height:auto}
+}
+/* главная: фото первого экрана ровно до правого края окна (с учётом полосы прокрутки) */
+@media (max-width:1180px){.hero--home .ph{width:175vw;margin-left:calc(100% + var(--pad) - 175vw);margin-right:0}}
+/* О Елене, «Елена как преподаватель» на телефоне: фото у правого края */
+@media (max-width:900px){#prepodavatel .tch-top__ph{align-self:stretch;width:auto}}
+/* главная, йога-туры: больше воздуха между линией и преподавателем (телефон и планшет до 1080) */
+@media (max-width:1080px){.trow{padding:38px 0 40px}}
