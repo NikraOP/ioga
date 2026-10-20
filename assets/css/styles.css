@@ -1999,3 +1999,42 @@ details.is-closing summary .ic{transform:none!important}
   .tp-soc-col .tp-soc__a{grid-template-columns:1fr auto}
   .tp-soc-col .tp-soc__a .ic{justify-self:end}
 }
+
+/* ===== 20.10: на телефоне текстовые блоки и фото по два в ряд ===== */
+@media (max-width:760px){
+  /* блок тура у преподавателей (01–04) */
+  #tur .nums--4{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 14px}
+  #tur .nums--4 li{padding-top:14px;gap:6px}
+  #tur .nums--4 .h3{font-size:15.5px;line-height:1.25}
+  #tur .nums--4 p{font-size:13px;line-height:1.45}
+  /* факты о преподавателе с крупными номерами (кроме «Пути» по годам) */
+  .tch-rows:not(.tp-time){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px;border-top:0}
+  .tch-rows:not(.tp-time) li{display:flex;flex-direction:column;gap:6px;padding:16px 0 20px;border-top:1px solid var(--line);border-bottom:0}
+  .tch-rows:not(.tp-time) .tch-rows__n{font-size:34px;line-height:.9}
+  .tch-rows:not(.tp-time) .tch-rows__t{margin-top:6px;font-size:15.5px;line-height:1.25}
+  .tch-rows:not(.tp-time) .tch-rows__d{font-size:13px;line-height:1.45}
+  /* специализация Марии (страница и визитка) */
+  .spec{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px}
+  .spec li{padding-top:14px}
+  .spec .h3{font-size:15px;line-height:1.25}
+  .spec p{font-size:13px;line-height:1.45}
+  .spec__ic{width:28px;height:28px;margin-bottom:10px}
+  .tp-spec{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .tp-spec li{padding:16px 14px 18px;gap:8px}
+  .tp-spec .h3{font-size:15px;line-height:1.25}
+  .tp-spec p{font-size:13px;line-height:1.45}
+  .tp-spec__n{font-size:30px!important}
+  /* «Как можно работать с Еленой» */
+  .ways,.ways--3{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+  .way__ph,.ways--3 .way__ph{aspect-ratio:4/5}
+  .way .h3{margin-top:10px;font-size:15px;line-height:1.25}
+  .way .h3 .ic{width:16px;height:16px;flex:none}
+  .way__d{font-size:12.5px;line-height:1.45}
+  /* фото преподавателя в практике: две колонки вразбежку */
+  .tp-gal{columns:2;column-gap:10px}
+  .tp-gal figure{margin-bottom:10px}
+  .tp-gal figure:nth-child(4n+1) button{aspect-ratio:3/4}
+  .tp-gal figure:nth-child(4n+2) button{aspect-ratio:1}
+  .tp-gal figure:nth-child(4n+3) button{aspect-ratio:4/5}
+  .tp-gal figure:nth-child(4n) button{aspect-ratio:2/3}
+}
