@@ -226,7 +226,7 @@
       e.preventDefault();
       const status = $('.f-status', f);
       const bad = fields.filter(i => !check(i));
-      if (bad.length) { bad[0].focus(); status.className = 'f-status err'; status.textContent = 'Проверьте отмеченные поля.'; return; }
+      if (bad.length) { bad[0].focus(); status.className = 'f-status err'; status.textContent = bad.length === 1 ? 'Заполните отмеченное поле, и можно отправлять' : 'Заполните отмеченные поля (' + bad.length + '), и можно отправлять'; return; }
       const btn = $('button[type=submit]', f);
       btn.disabled = true;
       status.className = 'f-status'; status.textContent = 'Отправляем…';
