@@ -23,7 +23,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preload" href="assets/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/styles.css?v=mvg27j6y">
+<link rel="stylesheet" href="assets/css/styles.css?v=mvg2e1pe">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Елена Остащенко","jobTitle":"Преподаватель йоги, организатор йога-туров на Камчатку","url":"https://elena-53east-yoga.ru/","telephone":"+7 909 832-30-88","email":"elena.ostashenk@yandex.ru","address":{"@type":"PostalAddress","addressLocality":"Петропавловск-Камчатский","addressCountry":"RU"},"sameAs":["https://t.me/elena_53east_yoga","https://www.instagram.com/elena_53east_yoga"]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Что покрывает стоимость организации 15 000 ₽ за участника, а какие расходы группы оплачиваются отдельно?","acceptedAnswer":{"@type":"Answer","text":"15 000 рублей за участника — работа организатора с начала взаимодействия и до убытия группы: определение стоимости тура, взаимодействие с исполнителями и полное сопровождение, организация проживания и питания, закрытие всех потребностей участников. Проживание, питание, транспорт и экскурсии оплачиваются по стоимости исполнителей. Сценарий и лендинг, проведение практики Еленой и участие приглашённым экспертом оплачиваются отдельно."}},{"@type":"Question","name":"Можно ли приехать со своим преподавателем и заказать только организацию?","acceptedAnswer":{"@type":"Answer","text":"Да, можно приехать со своим преподавателем. Преподавание в туре идёт отдельной опцией, поэтому организацию можно заказать без неё."}},{"@type":"Question","name":"Можно ли разработать маршрут под нашу группу? Какие направления доступны?","acceptedAnswer":{"@type":"Answer","text":"Да, сценарий разрабатывается под вашу группу, это отдельная услуга. Елена организовывала и сопровождала поездки по Камчатке и в Индию. Направление и программу обсуждаем на первом созвоне."}},{"@type":"Question","name":"За сколько времени нужно обращаться и какой размер группы возможен?","acceptedAnswer":{"@type":"Answer","text":"Работа над камчатским туром начинается примерно за год: заранее бронируются транспорт, гостиницы и повара. Чем раньше вы обратитесь, тем больше вариантов. В проведённых турах были группы от 6 до 23 участников."}},{"@type":"Question","name":"Как изменятся стоимость и бронирования, если число участников поменяется?","acceptedAnswer":{"@type":"Answer","text":"Стоимость организации считается за каждого участника и меняется вместе с размером группы. Как изменение повлияет на бронирования у исполнителей, обсуждаем сразу, как только оно становится известно."}},{"@type":"Question","name":"Каковы условия предоплаты, отмены и переноса тура для группы?","acceptedAnswer":{"@type":"Answer","text":"Условия предоплаты, отмены и переноса фиксируются в договоре и зависят от условий бронирования у исполнителей. Их согласуем до начала подготовки."}}]}]</script>
 </head>
 <body class="t-sage">
@@ -222,19 +222,25 @@
       <div class="f-row">
         <div class="f-field">
           <label class="f-label" for="f6-name">Имя</label>
-          <input id="f6-name" name="name" type="text" autocomplete="name" required maxlength="80" aria-describedby="f6-name-e">
+          <input id="f6-name" name="name" type="text" autocomplete="name" required maxlength="80" placeholder="Анна" aria-describedby="f6-name-e">
           <p class="f-err" id="f6-name-e" hidden>Напишите, как к&nbsp;вам обращаться</p>
         </div>
         <div class="f-field">
-          <label class="f-label" for="f6-contact">Телефон или мессенджер</label>
-          <input id="f6-contact" name="contact" type="text" inputmode="tel" autocomplete="tel" required maxlength="80" aria-describedby="f6-contact-e">
-          <p class="f-err" id="f6-contact-e" hidden>Оставьте телефон или ник, чтобы мы могли ответить</p>
+          <label class="f-label" for="f6-phone">Телефон</label>
+          <input id="f6-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="18" placeholder="+7 (900) 123-45-67" data-phone aria-describedby="f6-phone-e">
+          <p class="f-err" id="f6-phone-e" hidden>Введите номер полностью: +7 и&nbsp;10&nbsp;цифр</p>
         </div>
       </div>
-      <div class="f-field">
-        <label class="f-label" for="f6-email">Email <span class="f-opt">необязательно</span></label>
-        <input id="f6-email" name="email" type="email" autocomplete="email" maxlength="120" aria-describedby="f6-email-e">
-        <p class="f-err" id="f6-email-e" hidden>Проверьте адрес почты</p>
+      <div class="f-row">
+        <div class="f-field">
+          <label class="f-label" for="f6-email">Email</label>
+          <input id="f6-email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="anna@mail.ru" aria-describedby="f6-email-e">
+          <p class="f-err" id="f6-email-e" hidden>Проверьте адрес почты, например anna@mail.ru</p>
+        </div>
+        <div class="f-field">
+          <label class="f-label" for="f6-contact">Мессенджер <span class="f-opt">по желанию</span></label>
+          <input id="f6-contact" name="contact" type="text" autocomplete="off" maxlength="80" placeholder="@ник в Telegram или MAX">
+        </div>
       </div>
       <div class="f-field">
         <label class="f-label" for="f6-people">Количество участников</label>
@@ -244,7 +250,7 @@
       </div>
       <div class="f-field">
         <label class="f-label" for="f6-msg">Даты, размер группы и какая помощь нужна</label>
-        <textarea id="f6-msg" name="message" rows="4" maxlength="2000"></textarea>
+        <textarea id="f6-msg" name="message" rows="4" maxlength="2000" placeholder="Напишите, что хотите узнать"></textarea>
       </div>
       <div class="f-hp" aria-hidden="true"><label>Не заполняйте это поле<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
       <label class="f-check">
@@ -324,6 +330,6 @@
   <button class="lb__nav lb__next" type="button" data-lb-next aria-label="Следующее фото" hidden><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></button>
   <figure class="lb__f"><figcaption></figcaption></figure>
 </dialog>
-<script src="assets/js/script.js?v=mvg27j6y" defer></script>
+<script src="assets/js/script.js?v=mvg2e1pe" defer></script>
 </body>
 </html>

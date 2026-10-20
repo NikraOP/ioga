@@ -23,7 +23,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preload" href="assets/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/styles.css?v=mvg27j6y">
+<link rel="stylesheet" href="assets/css/styles.css?v=mvg2e1pe">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Елена Остащенко","jobTitle":"Преподаватель йоги, организатор йога-туров на Камчатку","url":"https://elena-53east-yoga.ru/","telephone":"+7 909 832-30-88","email":"elena.ostashenk@yandex.ru","address":{"@type":"PostalAddress","addressLocality":"Петропавловск-Камчатский","addressCountry":"RU"},"sameAs":["https://t.me/elena_53east_yoga","https://www.instagram.com/elena_53east_yoga"]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Как выбрать между групповой и персональной практикой, если начинаю впервые?","acceptedAnswer":{"@type":"Answer","text":"Групповые занятия в PROTEIN подойдут, если хочется заниматься по расписанию в компании: Елена подробно объясняет каждую асану и помогает рассчитать нагрузку. Персональная тренировка подойдёт, если нужен план под ваши задачи: она начинается с тестирования физического состояния. Если сомневаетесь, напишите Елене, она подскажет."}},{"@type":"Question","name":"Можно ли посетить групповое занятие без абонемента PROTEIN? Как оплачивается первое посещение?","acceptedAnswer":{"@type":"Answer","text":"Условия разового посещения и оплаты устанавливает фитнес-клуб PROTEIN. Уточните их у администратора или на официальном сайте клуба, а Елена подскажет, на какое занятие лучше прийти."}},{"@type":"Question","name":"Что взять на первое занятие? Предоставляется ли оборудование?","acceptedAnswer":{"@type":"Answer","text":"Удобную одежду, которая не сковывает движения, и воду. Наличие ковриков в зале уточните заранее. Перед первым занятием расскажите Елене о состоянии здоровья и противопоказаниях."}},{"@type":"Question","name":"Как выбрать место персональной тренировки? Кто оплачивает аренду студии и выезд?","acceptedAnswer":{"@type":"Answer","text":"Тренер выезжает к вам в удобное время и место по взаимной договоренности, в отдаленные районы за доплату. Есть возможность аренды студии. Место, время и стоимость аренды согласуем до оплаты."}},{"@type":"Question","name":"За какое время нужно предупредить о переносе или отмене тренировки?","acceptedAnswer":{"@type":"Answer","text":"Для офлайн-занятий не менее чем за 12 часов до начала. При более поздней отмене или неявке занятие считается проведённым. Подробно в разделе 7 публичной оферты."}},{"@type":"Question","name":"Какие требования к помещению и оборудованию для корпоративной практики?","acceptedAnswer":{"@type":"Answer","text":"Зал, оборудование и коллектив предоставляет принимающая сторона, тренер приносит знания, опыт и время. Площадь зала и количество ковриков обсуждаем при согласовании."}},{"@type":"Question","name":"Можно ли организовать регулярные корпоративные занятия? Как согласуются график и условия?","acceptedAnswer":{"@type":"Answer","text":"Да. Практика 60 минут стоит 8000 рублей вне зависимости от количества практикующих. График и условия фиксируем в договоре."}}]},{"@context":"https://schema.org","@type":"Service","name":"Персональные тренировки по йоге","provider":{"@type":"Person","name":"Елена Остащенко"},"areaServed":"Петропавловск-Камчатский","offers":[{"@type":"Offer","price":4000,"priceCurrency":"RUB","name":"1 чел., 60 минут"},{"@type":"Offer","price":5000,"priceCurrency":"RUB","name":"2 чел., 60 минут"},{"@type":"Offer","price":6000,"priceCurrency":"RUB","name":"3 чел., 60 минут"}]}]</script>
 </head>
 <body class="t-pink">
@@ -273,24 +273,30 @@
       <div class="f-row">
         <div class="f-field">
           <label class="f-label" for="f5-name">Имя</label>
-          <input id="f5-name" name="name" type="text" autocomplete="name" required maxlength="80" aria-describedby="f5-name-e">
+          <input id="f5-name" name="name" type="text" autocomplete="name" required maxlength="80" placeholder="Анна" aria-describedby="f5-name-e">
           <p class="f-err" id="f5-name-e" hidden>Напишите, как к&nbsp;вам обращаться</p>
         </div>
         <div class="f-field">
-          <label class="f-label" for="f5-contact">Телефон или мессенджер</label>
-          <input id="f5-contact" name="contact" type="text" inputmode="tel" autocomplete="tel" required maxlength="80" aria-describedby="f5-contact-e">
-          <p class="f-err" id="f5-contact-e" hidden>Оставьте телефон или ник, чтобы мы могли ответить</p>
+          <label class="f-label" for="f5-phone">Телефон</label>
+          <input id="f5-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="18" placeholder="+7 (900) 123-45-67" data-phone aria-describedby="f5-phone-e">
+          <p class="f-err" id="f5-phone-e" hidden>Введите номер полностью: +7 и&nbsp;10&nbsp;цифр</p>
         </div>
       </div>
-      <div class="f-field">
-        <label class="f-label" for="f5-email">Email <span class="f-opt">необязательно</span></label>
-        <input id="f5-email" name="email" type="email" autocomplete="email" maxlength="120" aria-describedby="f5-email-e">
-        <p class="f-err" id="f5-email-e" hidden>Проверьте адрес почты</p>
+      <div class="f-row">
+        <div class="f-field">
+          <label class="f-label" for="f5-email">Email</label>
+          <input id="f5-email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="anna@mail.ru" aria-describedby="f5-email-e">
+          <p class="f-err" id="f5-email-e" hidden>Проверьте адрес почты, например anna@mail.ru</p>
+        </div>
+        <div class="f-field">
+          <label class="f-label" for="f5-contact">Мессенджер <span class="f-opt">по желанию</span></label>
+          <input id="f5-contact" name="contact" type="text" autocomplete="off" maxlength="80" placeholder="@ник в Telegram или MAX">
+        </div>
       </div>
       
       <div class="f-field">
         <label class="f-label" for="f5-msg">Вопрос</label>
-        <textarea id="f5-msg" name="message" rows="4" maxlength="2000"></textarea>
+        <textarea id="f5-msg" name="message" rows="4" maxlength="2000" placeholder="Напишите, что хотите узнать"></textarea>
       </div>
       <div class="f-hp" aria-hidden="true"><label>Не заполняйте это поле<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
       <label class="f-check">
@@ -370,6 +376,6 @@
   <button class="lb__nav lb__next" type="button" data-lb-next aria-label="Следующее фото" hidden><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></button>
   <figure class="lb__f"><figcaption></figcaption></figure>
 </dialog>
-<script src="assets/js/script.js?v=mvg27j6y" defer></script>
+<script src="assets/js/script.js?v=mvg2e1pe" defer></script>
 </body>
 </html>

@@ -184,13 +184,40 @@
   const check = input => {
     let bad = false;
     if (input.type === 'checkbox') bad = input.required && !input.checked;
-    else if (input.type === 'email') bad = input.value.trim() !== '' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(input.value.trim());
+    else if (input.type === 'email') bad = (input.required || input.value.trim() !== '') && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(input.value.trim());
+    else if (input.hasAttribute('data-phone')) bad = input.value.replace(/\D/g, '').length !== 11;
     else if (input.required) bad = input.value.trim().length < 2;
     showErr(input, bad);
     return !bad;
   };
+  /* маска телефона: +7 (900) 123-45-67, не больше 10 цифр после +7 */
+  const fmtPhone = v => {
+    let d = v.replace(/\D/g, '');
+    if (d[0] === '8') d = '7' + d.slice(1);
+    if (d && d[0] !== '7') d = '7' + d;
+    d = d.slice(0, 11);
+    if (!d) return '';
+    const r = d.slice(1);
+    let out = '+7';
+    if (r.length) out += ' (' + r.slice(0, 3);
+    if (r.length >= 3) out += ')';
+    if (r.length > 3) out += ' ' + r.slice(3, 6);
+    if (r.length > 6) out += '-' + r.slice(6, 8);
+    if (r.length > 8) out += '-' + r.slice(8, 10);
+    return out;
+  };
+  $$('[data-phone]').forEach(i => {
+    i.addEventListener('focus', () => { if (!i.value) i.value = '+7 ('; });
+    i.addEventListener('blur', () => { if (i.value.replace(/\D/g, '').length <= 1) i.value = ''; });
+    i.addEventListener('input', e => {
+      const back = e.inputType && e.inputType.startsWith('delete');
+      const v = fmtPhone(i.value);
+      i.value = back && v.endsWith(')') && !i.value.endsWith(')') ? v.slice(0, -1) : v;
+    });
+  });
+
   $$('[data-form]').forEach(f => {
-    const fields = $$('input[required],input[type=email]', f);
+    const fields = $$('input[required],input[type=email],input[data-phone]', f);
     fields.forEach(i => {
       i.addEventListener(i.type === 'checkbox' ? 'change' : 'blur', () => { if (i.getAttribute('aria-invalid') || i.value) check(i); });
       i.addEventListener('input', () => { if (i.getAttribute('aria-invalid') === 'true') check(i); });
@@ -367,7 +394,7 @@
     f.focus();
   }));
 
-  /* отзывы на телефоне: лента вбок, длинный текст свёрнут, под ним кнопка «Читать полностью» */
+  /* отзывы на телефоне: лента вбок, длинный текст свёрнут, «Читать полностью» раскрывает плавно, «Свернуть» возвращает к началу отзыва */
   const revs = $$('.revs');
   if (revs.length) {
     const mq = matchMedia('(max-width: 760px)');
@@ -376,16 +403,39 @@
       hint.hidden = true; box.after(hint);
       $$('.rev', box).forEach(r => {
         const q = $('.rev__q', r); if (!q) return;
-        const b = document.createElement('button'); b.type = 'button'; b.className = 'rev__more'; b.textContent = 'Читать полностью'; b.hidden = true;
-        b.addEventListener('click', () => { const open = r.classList.toggle('is-open'); b.textContent = open ? 'Свернуть' : 'Читать полностью'; b.setAttribute('aria-expanded', String(open)); });
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'rev__more'; b.textContent = 'Читать полностью'; b.hidden = true; b.setAttribute('aria-expanded', 'false');
+        b.addEventListener('click', () => {
+          const open = !r.classList.contains('is-open');
+          if (open) {
+            q.style.maxHeight = q.scrollHeight + 'px';
+            r.classList.add('is-open');
+          } else {
+            q.style.maxHeight = '';
+            r.classList.remove('is-open');
+            const sec = box.closest('section') || box, top = sec.getBoundingClientRect().top;
+            if (top < 0) scrollTo({ top: Math.max(0, scrollY + top - 56), behavior: reduce ? 'auto' : 'smooth' });
+          }
+          b.textContent = open ? 'Свернуть' : 'Читать полностью';
+          b.setAttribute('aria-expanded', String(open));
+        });
         q.after(b);
       });
     });
     const sync = () => revs.forEach(box => {
       box.nextElementSibling.hidden = !mq.matches;
-      $$('.rev', box).forEach(r => { const q = $('.rev__q', r), b = $('.rev__more', r); if (!b) return; b.hidden = !mq.matches || (!r.classList.contains('is-open') && q.scrollHeight <= q.clientHeight + 2); });
+      $$('.rev', box).forEach(r => {
+        const q = $('.rev__q', r), b = $('.rev__more', r); if (!b) return;
+        if (r.classList.contains('is-open')) return;
+        q.style.maxHeight = '';
+        const extra = q.scrollHeight - q.clientHeight;
+        const long = mq.matches && extra > 40; // хвост меньше двух строк показываем сразу, без кнопки
+        if (mq.matches && !long && extra > 0) q.style.maxHeight = 'none';
+        r.classList.toggle('is-long', long);
+        b.hidden = !long;
+      });
     });
     sync(); mq.addEventListener('change', sync); addEventListener('load', sync);
+    if (document.fonts) document.fonts.ready.then(sync);
   }
 
   /* у футера полоса под адресной строкой (Safari на телефоне) окрашивается в цвет футера, выше по странице в цвет фона */
@@ -397,4 +447,29 @@
       document.documentElement.style.backgroundColor = e.isIntersecting ? deep : '';
     }), { rootMargin: '0px 0px -40% 0px' }).observe(foot);
   }
+
+  /* ---------- раскрывающиеся блоки (вопросы, дни программы): плавно по высоте ---------- */
+  if (!reduce && 'animate' in Element.prototype) $$('details').forEach(d => {
+    const sum = $('summary', d); if (!sum) return;
+    let anim = null;
+    const run = (from, to, done) => {
+      if (anim) anim.cancel();
+      d.style.overflow = 'hidden';
+      anim = d.animate({ height: [from + 'px', to + 'px'] }, { duration: 420, easing: 'cubic-bezier(.22,1,.36,1)' });
+      anim.onfinish = () => { anim = null; d.style.overflow = ''; done && done(); };
+      anim.oncancel = () => { anim = null; d.style.overflow = ''; };
+    };
+    sum.addEventListener('click', e => {
+      e.preventDefault();
+      const start = d.offsetHeight;
+      if (!d.open || d.classList.contains('is-closing')) {
+        d.classList.remove('is-closing');
+        d.open = true;
+        run(start, d.scrollHeight);
+      } else {
+        d.classList.add('is-closing');
+        run(start, sum.offsetHeight + (parseFloat(getComputedStyle(d).borderBottomWidth) || 0), () => { d.open = false; d.classList.remove('is-closing'); });
+      }
+    });
+  });
 })();

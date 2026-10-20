@@ -72,6 +72,7 @@ function field(string $key, int $max): string {
 }
 
 $name    = field('name', 80);
+$phone   = field('phone', 18);
 $contact = field('contact', 80);
 $email   = field('email', 120);
 $topic   = field('topic', 80);
@@ -81,7 +82,8 @@ $message = field('message', 2000);
 $page    = field('page', 200);
 $consent = ($_POST['consent'] ?? '') === '1';
 
-if (ulen($name) < 2 || ulen($contact) < 2 || !$consent) {
+$phoneDigits = preg_replace('/\D/', '', $phone);
+if (ulen($name) < 2 || strlen($phoneDigits) !== 11 || $email === '' || !$consent) {
     reply(422, ['ok' => false, 'error' => 'fields']);
 }
 if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -97,7 +99,8 @@ $lines = [
 if ($tour !== '')   { $lines[] = 'Тур: ' . $tour; }
 if ($people !== '') { $lines[] = 'Участников: ' . $people; }
 $lines[] = 'Имя: ' . $name;
-$lines[] = 'Телефон или мессенджер: ' . $contact;
+$lines[] = 'Телефон: ' . $phone;
+if ($contact !== '') { $lines[] = 'Мессенджер: ' . $contact; }
 if ($email !== '')  { $lines[] = 'Email: ' . $email; }
 $lines[] = '';
 $lines[] = 'Сообщение:';

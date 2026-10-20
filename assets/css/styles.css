@@ -417,7 +417,7 @@ main:focus{outline:none}
 .f-field{display:grid;gap:8px}
 .f-label{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
 .f-opt{text-transform:none;letter-spacing:0;opacity:.85}
-.form input[type=text],.form input[type=email],.form textarea,.form select{width:100%;min-height:52px;padding:14px 0;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--ink);font:inherit;font-size:17px;line-height:1.4;-webkit-appearance:none;appearance:none;transition:border-color .3s}
+.form input[type=text],.form input[type=email],.form input[type=tel],.form textarea,.form select{width:100%;min-height:52px;padding:14px 0;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--ink);font:inherit;font-size:17px;line-height:1.4;-webkit-appearance:none;appearance:none;transition:border-color .3s}
 .form textarea{resize:vertical;min-height:96px}
 .form input:focus,.form textarea:focus,.form select:focus{outline:none;border-bottom-color:var(--ink);box-shadow:0 1px 0 0 var(--ink)}
 .form [aria-invalid=true]{border-bottom-color:#A3242F!important}
@@ -1686,8 +1686,9 @@ a.tp-duo__it:hover .tp-duo__ph img,a.tp-duo__it:focus-visible .tp-duo__ph img{tr
   .revs{display:grid;columns:auto;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(var(--pad)*-1);padding:0 var(--pad) 8px;scroll-padding-inline:var(--pad);scrollbar-width:none;align-items:start}
   .revs::-webkit-scrollbar{display:none}
   .rev{grid-column:auto;margin:0;scroll-snap-align:start;padding:22px 20px}
-  .rev .rev__q{font-size:14.5px;line-height:1.55;max-height:13.5em;overflow:hidden;-webkit-mask:linear-gradient(#000 70%,transparent);mask:linear-gradient(#000 70%,transparent)}
-  .rev.is-open .rev__q{max-height:none;-webkit-mask:none;mask:none}
+  .rev .rev__q{font-size:14.5px;line-height:1.55;max-height:13.5em;overflow:hidden;transition:max-height 650ms var(--ease)}
+  .rev.is-long:not(.is-open) .rev__q{-webkit-mask:linear-gradient(#000 70%,transparent);mask:linear-gradient(#000 70%,transparent)}
+  @media (prefers-reduced-motion:reduce){.rev .rev__q{transition:none}}
   .rev__more{margin-top:12px;padding:0;border:0;background:none;font:inherit;font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;color:var(--ink);cursor:pointer}
   .rev__by{margin-top:16px;padding-top:14px}
   .revs-hint{display:block;margin-top:12px;font-size:13px;color:var(--ink-2)}
@@ -1776,8 +1777,8 @@ body{min-height:100svh}
   .subnav__cur{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:15px;font-weight:600}
   .subnav__chev{flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform 320ms var(--ease)}
   .subnav.is-open .subnav__chev{transform:rotate(180deg)}
-  .subnav .subnav__in{position:absolute;left:0;right:0;top:100%;display:none;flex-direction:column;gap:0;max-height:min(70svh,520px);overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;padding:6px 0 10px;background:var(--bg);background-image:var(--bg-grad);border-bottom:1px solid var(--line-2);box-shadow:0 18px 30px -18px rgb(0 0 0/.35);-webkit-mask-image:none;mask-image:none;scroll-snap-type:none}
-  .subnav.is-open .subnav__in{display:flex}
+  .subnav .subnav__in{position:absolute;left:0;right:0;top:100%;display:flex;visibility:hidden;opacity:0;transform:translateY(-8px);transition:opacity 280ms var(--ease),transform 380ms var(--ease),visibility 0s linear 380ms;flex-direction:column;gap:0;max-height:min(70svh,520px);overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;padding:6px 0 10px;background:var(--bg);background-image:var(--bg-grad);border-bottom:1px solid var(--line-2);box-shadow:0 18px 30px -18px rgb(0 0 0/.35);-webkit-mask-image:none;mask-image:none;scroll-snap-type:none}
+  .subnav.is-open .subnav__in{visibility:visible;opacity:1;transform:none;transition:opacity 280ms var(--ease),transform 380ms var(--ease),visibility 0s}
   .subnav .subnav__in a{min-height:48px;padding:0 var(--pad);font-size:16px;border-top:1px solid var(--line-2)}
   .subnav .subnav__in a:first-child{border-top:0}
   .subnav .subnav__in a::after{left:0;right:auto;top:12px;bottom:12px;width:3px;height:auto;transform:scaleY(0);transform-origin:center}
@@ -1878,3 +1879,12 @@ body{min-height:100svh}
   #prepodavateli .stack .btns{margin-top:28px}
 }
 @media (max-width:760px){.prow__p{grid-template-columns:1fr}.prow__p .num{white-space:nowrap;font-size:32px}.prow__p .btn{grid-column:1;grid-row:auto;justify-self:start;margin-top:14px}}
+
+/* плавное появление ответа в раскрывающихся блоках */
+details[open]>summary~*{animation:dt-in 420ms var(--ease) both}
+details.is-closing>summary~*{animation:dt-out 300ms var(--ease) both}
+@keyframes dt-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes dt-out{from{opacity:1}to{opacity:0}}
+.qa summary .ic,.day summary .ic{transition:transform 420ms var(--ease)}
+details.is-closing summary .ic{transform:none!important}
+@media (prefers-reduced-motion:reduce){details>summary~*{animation:none!important}}
