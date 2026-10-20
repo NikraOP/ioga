@@ -71,6 +71,7 @@
       es.forEach(e => e.isIntersecting ? seen.add(e.target.id) : seen.delete(e.target.id));
       const first = links.find(a => seen.has(a.getAttribute('href').slice(1)));
       links.forEach(a => a.classList.toggle('on', a === first));
+      const cur = $('.subnav__cur', sub); if (cur && first) cur.textContent = first.textContent;
       if (first) {
         const box = $('.subnav__in', sub);
         const l = first.offsetLeft - 24;
@@ -78,6 +79,20 @@
       }
     }, { rootMargin: '-45% 0px -50% 0px' });
     map.forEach((a, id) => { const s = document.getElementById(id); if (s) io2.observe(s); });
+  }
+
+  /* ---------- внутреннее меню на телефоне: кнопка «Раздел» открывает список ---------- */
+  const subBtn = sub && $('.subnav__btn', sub);
+  if (subBtn) {
+    const setOpen = on => { sub.classList.toggle('is-open', on); subBtn.setAttribute('aria-expanded', String(on)); };
+    subBtn.addEventListener('click', () => setOpen(!sub.classList.contains('is-open')));
+    $$('a', sub).forEach(a => a.addEventListener('click', () => {
+      const cur = $('.subnav__cur', sub); if (cur) cur.textContent = a.textContent;
+      setOpen(false);
+    }));
+    document.addEventListener('click', e => { if (!sub.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && sub.classList.contains('is-open')) { setOpen(false); subBtn.focus(); } });
+    addEventListener('scroll', () => { if (sub.classList.contains('is-open')) setOpen(false); }, { passive: true });
   }
 
   /* ---------- выбор заезда: запоминаем и подставляем в форму ---------- */

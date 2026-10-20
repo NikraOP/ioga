@@ -1758,3 +1758,35 @@ a.tp-duo__it:hover .tp-duo__ph img,a.tp-duo__it:focus-visible .tp-duo__ph img{tr
 }
 /* длинные слова в заголовках не распирают узкий экран («конфиденциальности» на 360px) */
 @media (max-width:420px){.h2,.h1,.h3{overflow-wrap:break-word;hyphens:auto}}
+
+/* ===== правки 20.10 по телефону Никиты ===== */
+/* под футером и в отскоке страницы цвет футера, а не розовый фон */
+html{background:var(--deep);overscroll-behavior-y:none}
+body{min-height:100svh}
+.foot{padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+
+/* панель разделов: на ПК лента ссылок, на телефоне кнопка «Раздел: …» и выпадающий список */
+.subnav__btn{display:none}
+@media (max-width:760px){
+  .subnav__row{position:relative;padding:0}
+  .subnav__k{display:none}
+  .subnav__btn{display:flex;align-items:center;gap:10px;width:100%;min-height:52px;padding:0 var(--pad);border:0;background:none;font:inherit;color:var(--ink);text-align:left;cursor:pointer;touch-action:manipulation}
+  .subnav__btn .ic{flex:none;width:16px;height:16px;stroke-width:1.6}
+  .subnav__lbl{flex:none;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)}
+  .subnav__cur{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:15px;font-weight:600}
+  .subnav__chev{flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform 320ms var(--ease)}
+  .subnav.is-open .subnav__chev{transform:rotate(180deg)}
+  .subnav .subnav__in{position:absolute;left:0;right:0;top:100%;display:none;flex-direction:column;gap:0;max-height:min(70svh,520px);overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;padding:6px 0 10px;background:var(--bg);background-image:var(--bg-grad);border-bottom:1px solid var(--line-2);box-shadow:0 18px 30px -18px rgb(0 0 0/.35);-webkit-mask-image:none;mask-image:none;scroll-snap-type:none}
+  .subnav.is-open .subnav__in{display:flex}
+  .subnav .subnav__in a{min-height:48px;padding:0 var(--pad);font-size:16px;border-top:1px solid var(--line-2)}
+  .subnav .subnav__in a:first-child{border-top:0}
+  .subnav .subnav__in a::after{left:0;right:auto;top:12px;bottom:12px;width:3px;height:auto;transform:scaleY(0);transform-origin:center}
+  .subnav .subnav__in a.on{font-weight:600}
+  .subnav .subnav__in a.on::after{transform:scaleY(1)}
+
+  /* ссылки со стрелкой: длинный текст переносится, подчёркивание и стрелка идут за текстом */
+  .lnk{display:block;width:fit-content;max-width:100%;min-height:0;padding:10px 0;line-height:1.4}
+  .lnk::after{display:none}
+  .lnk span{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:rgb(from currentColor r g b/.4)}
+  .lnk .ic{display:inline-block;vertical-align:-4px;margin-left:8px}
+}
