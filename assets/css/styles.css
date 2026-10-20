@@ -1986,7 +1986,7 @@ details.is-closing summary .ic{transform:none!important}
   .vids{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
   .vid h3{margin-top:10px;font-size:14px;line-height:1.3}
   .vid p{font-size:12px}
-  .vid .pl{transform:scale(.7)}
+  .vid__play .pl{left:10px;top:auto;bottom:10px;transform:none}.vid__play .pl i{width:40px;height:40px}.vid__play .pl .ic{width:15px;height:15px}
   /* персональные тренировки: фото после текста */
   #personal .two-col{display:flex;flex-direction:column}
   #personal .two-col>.ph-tall{order:2;margin-top:28px}
@@ -2070,4 +2070,12 @@ details.is-closing summary .ic{transform:none!important}
   .prow__d p:first-child::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:1px;background:currentColor}
   /* третья карточка отделена от первых двух */
   .price .prow:last-child:nth-child(odd){margin-top:18px}
+}
+/* онлайн-клуб, расписание на телефоне: кнопка «Записаться» после таблицы */
+@media (max-width:760px){
+  #raspisanie .two-col{display:flex;flex-direction:column}
+  #raspisanie .two-col>div:first-child{display:contents}
+  #raspisanie .two-col>div:first-child>.h2,#raspisanie .two-col>div:first-child>.lead{order:1}
+  #raspisanie .two-col>div:last-child{order:2;margin-top:28px}
+  #raspisanie .two-col .btns{order:3;margin-top:28px}
 }
