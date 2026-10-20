@@ -53,7 +53,11 @@
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
     }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-    $$('[data-reveal]').forEach(el => io.observe(el));
+    // контейнер с display:contents (сетки на телефоне) своей рамки не имеет, поэтому следим за каждым пунктом отдельно
+    $$('[data-reveal]').forEach(el => {
+      if (getComputedStyle(el).display === 'contents') $$(':scope > .rise', el).forEach(k => io.observe(k));
+      else io.observe(el);
+    });
     if (hero) {
       const go = () => requestAnimationFrame(() => requestAnimationFrame(() => hero.classList.add('is-in')));
       (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(go);
