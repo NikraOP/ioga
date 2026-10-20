@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /send.php
+Allow: /
+
+Sitemap: https://elena-53east-yoga.ru/sitemap.xml
