@@ -2087,3 +2087,12 @@ details.is-closing summary .ic{transform:none!important}
 .cgroup+.cgroup{margin-top:14px}
 .cgroup__note{margin-top:4px;font-size:13px;line-height:1.4;color:var(--ink-2)}
 @media (min-width:1100px){.cgroups{grid-template-columns:1fr 1fr;column-gap:32px}.cgroup+.cgroup{margin-top:0}}
+/* О Елене, «Елена как преподаватель» на телефоне: фото после плашки «Культура движения как метод» */
+@media (max-width:900px){
+  #prepodavatel .wrap{display:flex;flex-direction:column}
+  #prepodavatel .tch-top{display:contents}
+  #prepodavatel .tch-top__txt{order:1}
+  #prepodavatel .tch-rows{order:2}
+  #prepodavatel .tch-method{order:3}
+  #prepodavatel .tch-top__ph{order:4;margin-top:28px}
+}
