@@ -2079,3 +2079,5 @@ details.is-closing summary .ic{transform:none!important}
   #raspisanie .two-col>div:last-child{order:2;margin-top:28px}
   #raspisanie .two-col .btns{order:3;margin-top:28px}
 }
+/* соцсети преподавателя в форме связи: аккуратным столбиком */
+.msgr--col{flex-direction:column;align-items:flex-start;gap:0;margin-top:8px}
