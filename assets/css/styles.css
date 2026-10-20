@@ -1790,3 +1790,44 @@ body{min-height:100svh}
   .lnk span{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:rgb(from currentColor r g b/.4)}
   .lnk .ic{display:inline-block;vertical-align:-4px;margin-left:8px}
 }
+
+/* ===== правки 20.10 по телефону, вторая партия ===== */
+@media (max-width:760px){
+  /* даты: кнопки сразу под стоимостью, у всех карточек на одной высоте */
+  .tcard:has(.tcard__acts) dl{flex:0 0 auto;margin-bottom:18px}
+  .tcard__acts{margin-top:0}
+
+  /* «Подойдёт ли вам»: кнопка посередине между текстом и концом блока */
+  #nagruzka .btns{margin-top:calc(var(--sec) * .85)}
+
+  /* «что внутри тура»: больше воздуха, фото квадратные, кадр по главному */
+  .mosaic{row-gap:56px;column-gap:16px}
+  .tile__ph,.tile--5 .tile__ph{aspect-ratio:1}
+  .tile__tag{margin-top:16px;line-height:1.6}
+  .tile .h3{margin-top:10px;line-height:1.12;letter-spacing:-.015em}
+  .tile__d{margin-top:12px;line-height:1.55}
+  .tile__m{margin-top:16px;gap:8px}
+  .tile .lnk{margin-top:14px}
+  .tile__ph img[src*="volcano-sunset"]{object-position:22% 50%}
+  .tile__ph img[src*="husky"]{object-position:62% 50%}
+  .tile__ph img[src*="surf"]{object-position:45% 50%}
+  .tile__ph img[src*="whales"]{object-position:62% 50%}
+  /* отдельный тур на Курилы */
+  .mosaic__sep{margin-top:16px;padding-top:28px;gap:12px}
+  .tile--sep{padding:22px 20px 26px}
+  .tile--wide .tile__ph{aspect-ratio:3/2}
+  .tile--wide .tile__tag{margin-top:20px}
+  .tile--wide .h3{margin-top:12px}
+  .tile--wide .tile__d{margin-top:14px}
+  .tile--wide .tile__d+.tile__d,.tile__d p+p{margin-top:14px}
+}
+@media (max-width:760px){
+  /* даты: строки карточек по общей сетке, кнопки в паре карточек на одной высоте */
+  .tcards{grid-auto-rows:auto}
+  .tcard{display:grid;grid-row:span 4;grid-template-rows:subgrid;row-gap:0;align-content:start}
+  .tcard:has(.tcard__acts) dl{margin-bottom:18px}
+  /* ссылка со стрелкой: стрелка рядом с последней строкой текста, не уезжает вниз одна */
+  .lnk{display:inline-flex;align-items:flex-end;gap:8px}
+  .lnk .ic{flex:none;margin:0 0 2px;vertical-align:baseline}
+}
+@media (max-width:760px){.tcard__acts{align-self:start;justify-content:flex-start!important;gap:4px}}
