@@ -1960,11 +1960,6 @@ details.is-closing summary .ic{transform:none!important}
   #prepodavateli .head{margin-bottom:64px}
   /* Курилы: медведь ближе к кнопкам */
   .hero--kur .hero__ph--cut{margin-top:-24px}
-  /* Курилы, «Что вы увидите»: два блока рядом */
-  #o-poezdke .two-col{grid-template-columns:1fr 1fr;gap:16px}
-  #o-poezdke .stack{background:var(--paper);padding:16px 14px 18px;border-radius:4px}
-  #o-poezdke .stack .h3{font-size:16px;line-height:1.25}
-  #o-poezdke .stack .txt{margin-top:10px;font-size:13px;line-height:1.5}
   /* организация тура: этапы и цены одной сеткой по два, первая цена встаёт рядом с этапом 05 */
   #stoimost .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px;align-items:start}
   #stoimost .wrap>.head{grid-column:1/-1;margin-bottom:0}
