@@ -264,9 +264,10 @@
   if (consent === 'all') loadMetrika();
   const closeCookie = () => { cookie.hidden = true; document.dispatchEvent(new Event('cookie:done')); };
   if (cookie) {
-    if (!consent) cookie.hidden = false;
+    // плашка показывается при каждом новом заходе на сайт (новая сессия браузера), внутри визита после выбора не повторяется
+    if (!store.sget('cookie-seen')) cookie.hidden = false;
     $$('[data-cookie]', cookie).forEach(b => b.addEventListener('click', () => {
-      store.set('cookie', b.dataset.cookie);
+      store.set('cookie', b.dataset.cookie); store.sset('cookie-seen', '1');
       if (b.dataset.cookie === 'all') loadMetrika();
       closeCookie();
     }));
