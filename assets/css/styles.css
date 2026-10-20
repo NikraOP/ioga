@@ -1917,3 +1917,7 @@ details.is-closing summary .ic{transform:none!important}
   .pricelist li{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:14px 12px 16px;border:0;background:var(--paper);border-radius:4px;font-size:13px;line-height:1.35}
   .pricelist b{font-size:22px}
 }
+/* подход Елены: на телефоне портретные фото выше и кадр от головы, Елена видна целиком */
+@media (max-width:900px){.nums__ph{aspect-ratio:4/5}.nums__ph img{object-position:50% 12%}.nums__ph img[src*="elena-home-lotus"]{object-position:50% 40%}}
+/* подсказки в полях формы бледнее, чтобы не спорили с введённым текстом */
+.form input::placeholder,.form textarea::placeholder{color:var(--ink-2);opacity:.38}
