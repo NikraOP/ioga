@@ -1899,3 +1899,21 @@ details.is-closing summary .ic{transform:none!important}
   #yuliya .ph-tall>.rise{position:static;height:100%}
   #yuliya .ph-tall img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 }
+
+/* ===== карточки с ценой на телефоне (как размещение на странице туров) ===== */
+.m-only{display:none}
+@media (max-width:760px){
+  .m-only{display:inline-flex}
+  /* Курилы, варианты размещения */
+  .packs:not(.packs--cards){grid-template-columns:1fr;gap:14px}
+  .packs:not(.packs--cards) .pack{display:flex;flex-direction:column;padding:22px 20px 24px;border:0;background:var(--paper);border-radius:4px}
+  .packs:not(.packs--cards) .pack .prow__floor{font-size:11px;letter-spacing:.14em}
+  .packs:not(.packs--cards) .pack .h3{margin-top:8px!important;font-size:19px;line-height:1.2}
+  .packs:not(.packs--cards) .pack p:not(.prow__floor){order:2;margin-top:16px;padding-top:14px;border-top:1px solid var(--line-2);font-size:14.5px;line-height:1.5}
+  .packs:not(.packs--cards) .pack .num{order:3;margin:18px 0 0;padding-top:16px;border-top:1px solid var(--line-2);font-size:30px;white-space:nowrap}
+  .packs:not(.packs--cards) .pack .btn{order:4;align-self:flex-start;margin-top:14px;min-height:42px;padding:8px 16px;font-size:13px}
+  /* персональные тренировки: прайс тремя карточками в ряд */
+  .pricelist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;border:0}
+  .pricelist li{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:14px 12px 16px;border:0;background:var(--paper);border-radius:4px;font-size:13px;line-height:1.35}
+  .pricelist b{font-size:22px}
+}
