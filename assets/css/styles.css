@@ -1921,3 +1921,27 @@ details.is-closing summary .ic{transform:none!important}
 @media (max-width:900px){.nums__ph{aspect-ratio:4/5}.nums__ph img{object-position:50% 12%}.nums__ph img[src*="elena-home-lotus"]{object-position:50% 40%}}
 /* подсказки в полях формы бледнее, чтобы не спорили с введённым текстом */
 .form input::placeholder,.form textarea::placeholder{color:var(--ink-2);opacity:.38}
+
+/* ===== правки 20.10, по скриншотам с телефона ===== */
+/* Юлия: одно фото вместо коллажа (медведь убран), на всех экранах */
+.tp-collage--one{padding-bottom:0}
+.tp-collage--one .tp-collage__a{width:100%;aspect-ratio:4/5}
+@media (min-width:901px){.tp-collage--one .tp-collage__a{width:88%}}
+/* О Елене: цитата отделена от цифр воздухом */
+#organizator .tch-quote+.facts-line--3{margin-top:clamp(36px,4vw,56px);padding-top:clamp(28px,3vw,40px)}
+@media (max-width:760px){
+  #organizator .tch-quote{margin-bottom:8px}
+  /* «Где вела туры», «Где учится»: между группами больше воздуха */
+  .tp-geo{gap:48px}
+  .tp-geo__list{margin-top:18px}
+  /* блок тура у преподавателей: кнопки отделены от пунктов */
+  #tur .nums+.center-btn{margin-top:44px}
+  #tur .note{margin-top:20px}
+  /* Мария в соцсетях: на телефоне голова целиком, срез снизу */
+  .tp-soc-ph img[src*="maria-6-hd"]{object-position:50% 22%}
+  /* групповые занятия: кнопка отделена от расписания, меньше пустоты между фото групповых и персональных */
+  #gruppa .btns{margin-top:32px}
+  #gruppa .ph-tall{margin-top:32px}
+  #gruppa{padding-bottom:calc(var(--sec)*.55)}
+  #gruppa+#personal{padding-top:calc(var(--sec)*.55)}
+}
