@@ -387,4 +387,14 @@
     });
     sync(); mq.addEventListener('change', sync); addEventListener('load', sync);
   }
+
+  /* у футера полоса под адресной строкой (Safari на телефоне) окрашивается в цвет футера, выше по странице в цвет фона */
+  const foot = $('.foot'), tc = $('meta[name="theme-color"]');
+  if (foot && tc && 'IntersectionObserver' in window) {
+    const base = tc.content, deep = getComputedStyle(foot).backgroundColor;
+    new IntersectionObserver(es => es.forEach(e => {
+      tc.content = e.isIntersecting ? deep : base;
+      document.documentElement.style.backgroundColor = e.isIntersecting ? deep : '';
+    }), { rootMargin: '0px 0px -40% 0px' }).observe(foot);
+  }
 })();

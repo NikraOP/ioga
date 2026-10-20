@@ -1761,7 +1761,7 @@ a.tp-duo__it:hover .tp-duo__ph img,a.tp-duo__it:focus-visible .tp-duo__ph img{tr
 
 /* ===== правки 20.10 по телефону Никиты ===== */
 /* под футером и в отскоке страницы цвет футера, а не розовый фон */
-html{background:var(--deep);overscroll-behavior-y:none}
+html{background:var(--bg);overscroll-behavior-y:none}
 body{min-height:100svh}
 .foot{padding-bottom:calc(28px + env(safe-area-inset-bottom))}
 
@@ -1831,3 +1831,50 @@ body{min-height:100svh}
   .lnk .ic{flex:none;margin:0 0 2px;vertical-align:baseline}
 }
 @media (max-width:760px){.tcard__acts{align-self:start;justify-content:flex-start!important;gap:4px}}
+
+/* ===== правки 20.10, третья партия ===== */
+/* фильмы: обложки горизонтальные, рамка 4:3 почти без обрезки (ПК и телефон) */
+.film__ph{aspect-ratio:4/3}
+.film__ph img[src*="fox"]{object-position:50% 30%}
+@media (max-width:760px){
+  .film__ph{aspect-ratio:4/3}
+
+  /* проведённые мероприятия (все страницы): ровная сетка в две колонки, без пустоты перед кнопкой */
+  .pf-cols{display:grid;columns:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 12px;align-items:start}
+  .pf-cols .pf__it{margin:0!important}
+  .pf-cols .pf__it .pf__ph,.pf-cols .pf__it:nth-child(odd) .pf__ph,.pf-cols .pf__it:nth-child(even) .pf__ph{aspect-ratio:1}
+  .pf-cols+.center-btn,.pf-cols~.btns.center-btn,.center-btn{margin-top:28px}
+
+  /* кадры с маршрутов: две ровные колонки, последняя одиночная фотка во всю ширину */
+  .gal:not(.gal--hotel){display:grid;columns:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px;align-items:start}
+  .gal:not(.gal--hotel) figure{margin:0}
+  .gal:not(.gal--hotel) button{aspect-ratio:4/5}
+  .gal:not(.gal--hotel) img{width:100%;height:100%;object-fit:cover}
+  .gal:not(.gal--hotel) figure:last-child:nth-child(odd){grid-column:1/-1}
+  .gal:not(.gal--hotel) figure:last-child:nth-child(odd) button{aspect-ratio:3/2}
+
+  /* стоимость: каждое размещение карточкой, внутри три понятные части */
+  .price{border-top:0;display:grid;gap:14px}
+  .prow{padding:22px 20px 24px;gap:0;border:0;background:var(--paper);border-radius:4px}
+  .prow>div:first-child{display:grid;grid-template-columns:1fr auto;column-gap:12px;align-items:start}
+  .prow__floor{grid-column:1/-1;font-size:11px;letter-spacing:.14em}
+  .prow .h3{grid-column:1;margin-top:8px;font-size:21px}
+  .prow .muted{grid-column:1;margin-top:6px!important;font-size:14.5px}
+  .prow__left{grid-column:2;grid-row:2/4;align-self:center;margin:0;white-space:nowrap;background:var(--bg);border:1px solid var(--line-2);font-size:12.5px;font-weight:600}
+  .prow__d{margin-top:18px;padding-top:16px;border-top:1px solid var(--line-2)}
+  .prow__d p{font-size:14.5px;line-height:1.5}
+  .prow__d p+p{margin-top:8px}
+  .prow__d ul{margin-top:14px}
+  .prow__d li{font-size:14.5px}
+  .prow__p{margin-top:18px;padding-top:16px;border-top:1px solid var(--line-2);display:grid;grid-template-columns:1fr auto;align-items:end;gap:4px 12px}
+  .prow__p .num{font-size:30px}
+  .prow__p small{grid-column:1;margin:0;font-size:13px}
+  .prow__p .btn{grid-column:2;grid-row:1/3;align-self:center;min-height:42px;padding:8px 16px;font-size:13px}
+  .terms{margin-top:28px}
+
+  /* преподаватели в турах: теги отделены от текста и от ссылок */
+  #prepodavateli .tile__m{margin:22px 0 6px;gap:8px}
+  #prepodavateli .msgr{margin-top:22px}
+  #prepodavateli .stack .btns{margin-top:28px}
+}
+@media (max-width:760px){.prow__p{grid-template-columns:1fr}.prow__p .num{white-space:nowrap;font-size:32px}.prow__p .btn{grid-column:1;grid-row:auto;justify-self:start;margin-top:14px}}
