@@ -1945,3 +1945,8 @@ details.is-closing summary .ic{transform:none!important}
   #gruppa{padding-bottom:calc(var(--sec)*.55)}
   #gruppa+#personal{padding-top:calc(var(--sec)*.55)}
 }
+/* аудит 20.10: «Проведённые туры» на странице туров ближе к блоку организатора; зоны нажатия от 44px */
+.pf-tury{margin-top:clamp(120px,10vw,190px)}
+@media (max-width:900px){.pf-tury{margin-top:clamp(72px,16vw,110px)}}
+.rev__more{min-height:44px;display:inline-flex;align-items:center}
+@media (max-width:760px){.prow__p .btn,.packs:not(.packs--cards) .pack .btn{min-height:44px}}
